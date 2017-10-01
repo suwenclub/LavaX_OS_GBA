@@ -1,14 +1,14 @@
 PATH=.\devkitadv\bin;%PATH%
 
-Larm 中国麻将GBA.lav -o 中国麻将GBA.s
+Larm 涓浗楹诲皢GBA.lav -o 涓浗楹诲皢GBA.s
 
-as -o lav.o 中国麻将GBA.s
+as -o lav.o 涓浗楹诲皢GBA.s
 
 gcc -o main.elf lav.o
 
-objcopy -v -O binary main.elf 中国麻将.exe
+objcopy -v -O binary main.elf 涓浗楹诲皢.exe
 
-del main.elf lav.o 中国麻将GBA.s
+del main.elf lav.o 涓浗楹诲皢GBA.s
 
 pause
 

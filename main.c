@@ -11,7 +11,7 @@ a32 r9_bak;
 
 a32 shell_init(a32 rr9)
 {
-	filesys_init(); //ÎÄ¼şÏµÍ³³õÊ¼»¯
+	filesys_init(); //æ–‡ä»¶ç³»ç»Ÿåˆå§‹åŒ–
 	lRam=(u8*)rr9;
 	task_lev=0;
 	return (a32)romdisk_fileaddr("/System/shell.sys");
@@ -20,12 +20,12 @@ a32 shell_init(a32 rr9)
 int main()
 {
 	lav_fonts=(byte *)lav_font;
-	REG_WSCNT=0x4002; //Ê¹SuperCardÕı³£¿ìËÙÔËĞĞµÄ×î¼ÑÖµ
+	REG_WSCNT=0x4002; //ä½¿SuperCardæ­£å¸¸å¿«é€Ÿè¿è¡Œçš„æœ€ä½³å€¼
 
 	InitIrq();
 	IrqVBlankEnable();
 	IrqTimerEnable();
-	romdisk_init(); //´ÅÅÌ³õÊ¼»¯
+	romdisk_init(); //ç£ç›˜åˆå§‹åŒ–
 	Color256Init();
 
 	TickCount=Hz128=0;

@@ -2,7 +2,7 @@
 
 extern void IrqServe();
 
-int ScreenWidth=240,ScreenHeight=160; //¿É±äµÄÆÁÄ»¿í¸ß
+int ScreenWidth=240,ScreenHeight=160; //å¯å˜çš„å±å¹•å®½é«˜
 
 byte *BmpData=(byte*)(0x2000000);
 

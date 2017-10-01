@@ -4,7 +4,7 @@
 
 byte *asm;
 
-//´Óp¿ªÊ¼²éÕÒÒ»¸ö±êºÅ£¬Ìîµ½s£¬·µ»Ø±êºÅµÄÎ»ÖÃ
+//ä»på¼€å§‹æŸ¥æ‰¾ä¸€ä¸ªæ ‡å·ï¼Œå¡«åˆ°sï¼Œè¿”å›æ ‡å·çš„ä½ç½®
 byte *get_biaohao(byte *p,byte *s)
 {
 	byte *t,*te;
@@ -26,7 +26,7 @@ xxx:
 	return t;
 }
 
-//´Óp¿ªÊ¼²éÕÒÒ»¸ö×ªÒÆÄ¿±ê£¬Ìîµ½s£¬·µ»Ø×ªÒÆÄ¿±êµÄÎ»ÖÃ
+//ä»på¼€å§‹æŸ¥æ‰¾ä¸€ä¸ªè½¬ç§»ç›®æ ‡ï¼Œå¡«åˆ°sï¼Œè¿”å›è½¬ç§»ç›®æ ‡çš„ä½ç½®
 byte *get_mubiao(byte *p,byte *s)
 {
 	byte *t,*tf;
@@ -177,7 +177,7 @@ void tihuan(byte *p,byte *src,byte *obj)
 	memcpy(p,obj,len2);
 }
 
-void biaohao() //Ïû³ı¶àÓà±êºÅ
+void biaohao() //æ¶ˆé™¤å¤šä½™æ ‡å·
 {
 	byte *p,*cur;
 	byte bh[32];
@@ -210,7 +210,7 @@ void ctl_movs()
 
 		n2=up_line(n0);
 		if (!strncmp(n2,".Lland",6)) {
-			if ((!strncmp(nx,"\tbeq\t",5))) { //Âß¼­ÓëÓÅ»¯
+			if ((!strncmp(nx,"\tbeq\t",5))) { //é€»è¾‘ä¸ä¼˜åŒ–
 				get_mubiao(nx,mbs);
 				for (i=0;;i++) {
 					lmbs[i]=n2[i];
@@ -387,7 +387,7 @@ void youhua_main(char *InName,char *OutName)
 
 	fp=fopen(InName,"rb");
 	if (fp==NULL) {
-		printf("´íÎó£ºÎŞ·¨´ò¿ªÊäÈëÎÄ¼ş %s\n",InName);
+		printf("é”™è¯¯ï¼šæ— æ³•æ‰“å¼€è¾“å…¥æ–‡ä»¶ %s\n",InName);
 		return;
 	}
 	fseek(fp,0,SEEK_END);
@@ -395,7 +395,7 @@ void youhua_main(char *InName,char *OutName)
 	rewind(fp);
 	asm=malloc(file_len+1024);
 	if (asm==NULL) {
-		printf("´íÎó£ºÄÚ´æ²»×ã\n");
+		printf("é”™è¯¯ï¼šå†…å­˜ä¸è¶³\n");
 		fclose(fp);
 		return;
 	}
@@ -411,7 +411,7 @@ void youhua_main(char *InName,char *OutName)
 
 	fp=fopen(OutName,"wb");
 	if (fp==NULL) {
-		printf("´íÎó£ºÎŞ·¨´ò¿ªÊä³öÎÄ¼ş %s\n",OutName);
+		printf("é”™è¯¯ï¼šæ— æ³•æ‰“å¼€è¾“å‡ºæ–‡ä»¶ %s\n",OutName);
 		return;
 	}
 	file_len=strlen(asm);

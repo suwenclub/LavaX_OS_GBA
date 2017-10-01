@@ -71,7 +71,7 @@ struct DirEnt *romdisk_dirfindname(char *name,a32 DirHandle)
 
 	p=(struct DirEnt *)(FileSystemStart+DirHandle);
 	while (p->name[0]) {
-		if (!strcmp(p->name,name)) { //ÕÒµ½
+		if (!strcmp(p->name,name)) { //æ‰¾åˆ°
 			return p;
 		}
 		p++;
@@ -246,7 +246,7 @@ int check_handle(a32 t)
 {
 	if (t>=0x80 && t<0x80+MAX_OPEN_FILES) {
 		t&=0x7f;
-		if (fhave[t] && ftask[t]==task_lev) //²»ÔÊÐí²Ù×÷±ðµÄÈÎÎñ´ò¿ªµÄÎÄ¼þ
+		if (fhave[t] && ftask[t]==task_lev) //ä¸å…è®¸æ“ä½œåˆ«çš„ä»»åŠ¡æ‰“å¼€çš„æ–‡ä»¶
 			FileHandle=fhandle[t];
 		else return 0;
 	} else return 0;
@@ -263,18 +263,18 @@ a32 c_fopen()
 	get_bp();
 	mode=judge_mode();
 	if (mode) mode--;
-	else return 0; //ÎÄ¼þ´ò¿ªÄ£Ê½´íÎó
+	else return 0; //æ–‡ä»¶æ‰“å¼€æ¨¡å¼é”™è¯¯
 	for (i=0;i<MAX_OPEN_FILES;i++) if (fhave[i]==0) break;
-	if (i==MAX_OPEN_FILES) return 0; //³¬¹ýÍ¬Ê±´ò¿ªÎÄ¼þÊýÏÞÖÆ
+	if (i==MAX_OPEN_FILES) return 0; //è¶…è¿‡åŒæ—¶æ‰“å¼€æ–‡ä»¶æ•°é™åˆ¶
 	this_file=i;
 	fmode[this_file]=mode;
-	if (!lRam[bp[0]]) return 0; //ÎÄ¼þÃûÎª¿Õ
+	if (!lRam[bp[0]]) return 0; //æ–‡ä»¶åä¸ºç©º
 	dir=romdisk_findname(lRam+bp[0]);
-	if (dir==NULL) return 0; //ÕÒ²»µ½ÎÄ¼þ
-	if (dir->Attrib&0x80) return 0; //Ä¿Â¼
+	if (dir==NULL) return 0; //æ‰¾ä¸åˆ°æ–‡ä»¶
+	if (dir->Attrib&0x80) return 0; //ç›®å½•
 	for (i=0;i<MAX_OPEN_FILES;i++) {
 		if (fhave[i]) {
-			if (fhandle[i]==dir) { //ÎÄ¼þÒÑ´ò¿ª
+			if (fhandle[i]==dir) { //æ–‡ä»¶å·²æ‰“å¼€
 				return 0;
 			}
 		}
@@ -305,7 +305,7 @@ void c_closeall()
 
 	for (i=0;i<MAX_OPEN_FILES;i++) {
 		if (fhave[i]) {
-			if (ftask[i]==task_lev) { //Ö»¹Ø±Õµ±Ç°ÈÎÎñ´ò¿ªµÄÎÄ¼þ
+			if (ftask[i]==task_lev) { //åªå…³é—­å½“å‰ä»»åŠ¡æ‰“å¼€çš„æ–‡ä»¶
 				fhave[i]=0;
 			}
 		}
@@ -324,7 +324,7 @@ a32 c_fread()
 	str=bp[0];
 	if (modeAccess[fmode[curr_fnum]]&GENERIC_READ) {
 		if (foffset[curr_fnum]+len>fsize[curr_fnum])
-			len=fsize[curr_fnum]-foffset[curr_fnum]; //¶ÁÎÄ¼þ²»³¬¹ýÎÄ¼þÎ²
+			len=fsize[curr_fnum]-foffset[curr_fnum]; //è¯»æ–‡ä»¶ä¸è¶…è¿‡æ–‡ä»¶å°¾
 		if (len) {
 			memcpy(lRam+str,FileSystemStart+FileHandle->address+foffset[curr_fnum],len);
 			foffset[curr_fnum]+=len;
@@ -401,7 +401,7 @@ a32 c_getc()
 	if (!check_handle(bp[0])) {
 		return -1;
 	}
-	if (foffset[curr_fnum]==fsize[curr_fnum]) a1=-1; //½áÊø
+	if (foffset[curr_fnum]==fsize[curr_fnum]) a1=-1; //ç»“æŸ
 	else if (modeAccess[fmode[curr_fnum]]&GENERIC_READ) {
 		a1=*(FileSystemStart+FileHandle->address+foffset[curr_fnum]);
 		foffset[curr_fnum]++;

@@ -24,16 +24,16 @@ struct TASK
 	byte	*lRam;
 };
 
-//register a32 REG9 asm ("r9"); //ÓÃÀ´±£Áô¼Ä´æÆ÷
+//register a32 REG9 asm ("r9"); //ç”¨æ¥ä¿ç•™å¯„å­˜å™¨
 
 extern byte *lav_fonts;
 extern byte *BmpData;
-extern int ScreenWidth,ScreenHeight; //¿É±äµÄÆÁÄ»¿í¸ß
+extern int ScreenWidth,ScreenHeight; //å¯å˜çš„å±å¹•å®½é«˜
 extern byte *VRam;
 extern byte *pLAVA,*pNextLAVA;
 extern byte *lRam;
-extern struct TASK task[]; //ÈÎÎñÕ»
-extern int task_lev; //ÈÎÎñ¼¶
+extern struct TASK task[]; //ä»»åŠ¡æ ˆ
+extern int task_lev; //ä»»åŠ¡çº§
 extern volatile byte lav_key;
 extern byte cur_keyb[128];
 extern volatile byte Hz128;

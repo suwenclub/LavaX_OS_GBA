@@ -1,16 +1,16 @@
 makeLavaX.bat
-����LavaX.bin��LavaX-OS��GBA�档
+生成LavaX.bin，LavaX-OS的GBA版。
 
-make�й��齫.bat
-�����й��齫.exe��һ��������LavaX-OS��GBA���ϵ��й��齫��Ϸ�Ŀ�ִ���ļ���
+make中国麻将.bat
+生成中国麻将.exe，一个运行在LavaX-OS的GBA版上的中国麻将游戏的可执行文件。
 
 Larm
-LavaX������������Դ�롣
+LavaX本机编译程序的源码。
 
 *.s *.c *.h
-LavaX-OS��Դ��
+LavaX-OS的源码
 
 font.dat
-LavaX-OS����ʱ��Ҫ�������ļ�
+LavaX-OS运行时需要的字体文件
 
-LavaX-OS GBA��������ļ��뵽�ҵĸ�����վ���أ� http://xlfd1.com
+LavaX-OS GBA版的其他文件请到我的个人网站下载： http://xlfd1.com

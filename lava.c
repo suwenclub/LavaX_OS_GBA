@@ -6,7 +6,7 @@
 
 #define CMDLINE	0x700
 
-//register a32 REG9 asm ("r9"); //ÓÃÀ´±£Áô¼Ä´æÆ÷
+//register a32 REG9 asm ("r9"); //ç”¨æ¥ä¿ç•™å¯„å­˜å™¨
 
 /*extern double sin(double x);
 extern double cos(double x);
@@ -112,8 +112,8 @@ const byte crc2[256]={
 };
 
 byte *VRam;//[0xc0000];//[65536];
-struct TASK task[/*16*/8]; //ÈÎÎñÕ»
-int task_lev; //ÈÎÎñ¼¶
+struct TASK task[/*16*/8]; //ä»»åŠ¡æ ˆ
+int task_lev; //ä»»åŠ¡çº§
 byte *lRam;
 long a1,a3;
 long seed;
@@ -169,7 +169,7 @@ void make_negative()
 
 void set_sys_ram()
 {
-	TextBuffer=		0x1400; //¹ÊÒâÕâÑù£¬ÒÔ¼ìÑéÊÇ·ñµØÖ·Ïà¹Ø
+	TextBuffer=		0x1400; //æ•…æ„è¿™æ ·ï¼Œä»¥æ£€éªŒæ˜¯å¦åœ°å€ç›¸å…³
 }
 
 void wait_no_key()
@@ -224,7 +224,7 @@ a32 TaskExit()
 	int i;
 	int ret_val;
 
-	c_closeall(); //¹Ø±Õµ±Ç°ÈÎÎñËùÓĞ´ò¿ªµÄÎÄ¼ş
+	c_closeall(); //å…³é—­å½“å‰ä»»åŠ¡æ‰€æœ‰æ‰“å¼€çš„æ–‡ä»¶
 	if (task_lev) {
 		task_lev--;
 		lRam=task[task_lev].lRam;
@@ -261,7 +261,7 @@ void ByteAddr()
 
 void put_dot()
 {
-	if (xx>=ScreenWidth) return; //ÔÚpc¶ËÔÊĞí²Ù×÷×î×óÁĞ£¬±Ï¾¹²»ÊÇËùÓĞLCD¶¼´øICONµÄ
+	if (xx>=ScreenWidth) return; //åœ¨pcç«¯å…è®¸æ“ä½œæœ€å·¦åˆ—ï¼Œæ¯•ç«Ÿä¸æ˜¯æ‰€æœ‰LCDéƒ½å¸¦ICONçš„
 	if (yy>=ScreenHeight) return;
 	ByteAddr();
 	if (graph_mode==1) {
@@ -340,15 +340,15 @@ void write_comm(word x,word y,word width,word height,byte *data)
 
 		if (y>=ScreenHeight) {
 			temp=0x10000-y;
-			if (height<=temp) return; //È«ÔÚ»­ÃæÍâ£¬²»ĞèÒª»­
+			if (height<=temp) return; //å…¨åœ¨ç”»é¢å¤–ï¼Œä¸éœ€è¦ç”»
 			height-=temp;
 			td+=temp*widths;
 			y=0;
 		}
-		if (y+height>ScreenHeight) height=ScreenHeight-y; //¼ôÈ¥³öµ×ÆÁ²¿·Ö
+		if (y+height>ScreenHeight) height=ScreenHeight-y; //å‰ªå»å‡ºåº•å±éƒ¨åˆ†
 		if (x_bak>=ScreenWidth) {
 			temp=0x10000-x_bak;
-			if (width<=temp) return; //È«ÔÚ»­ÃæÍâ£¬²»ĞèÒª»­
+			if (width<=temp) return; //å…¨åœ¨ç”»é¢å¤–ï¼Œä¸éœ€è¦ç”»
 			width-=temp;
 			td+=temp>>3;
 			if (temp&7) {
@@ -471,15 +471,15 @@ void write_comm(word x,word y,word width,word height,byte *data)
 			
 		if (y>=ScreenHeight) {
 			temp=0x10000-y;
-			if (height<=temp) return; //È«ÔÚ»­ÃæÍâ£¬²»ĞèÒª»­
+			if (height<=temp) return; //å…¨åœ¨ç”»é¢å¤–ï¼Œä¸éœ€è¦ç”»
 			height-=temp;
 			td+=temp*widths;
 			y=0;
 		}
-		if (y+height>ScreenHeight) height=ScreenHeight-y; //¼ôÈ¥³öµ×ÆÁ²¿·Ö
+		if (y+height>ScreenHeight) height=ScreenHeight-y; //å‰ªå»å‡ºåº•å±éƒ¨åˆ†
 		if (x_bak>=ScreenWidth) {
 			temp=0x10000-x_bak;
-			if (width<=temp) return; //È«ÔÚ»­ÃæÍâ£¬²»ĞèÒª»­
+			if (width<=temp) return; //å…¨åœ¨ç”»é¢å¤–ï¼Œä¸éœ€è¦ç”»
 			width-=temp;
 			td+=temp>>1;
 			if (temp&1) {
@@ -609,15 +609,15 @@ void write_comm(word x,word y,word width,word height,byte *data)
 			
 		if (y>=ScreenHeight) {
 			temp=0x10000-y;
-			if (height<=temp) return; //È«ÔÚ»­ÃæÍâ£¬²»ĞèÒª»­
+			if (height<=temp) return; //å…¨åœ¨ç”»é¢å¤–ï¼Œä¸éœ€è¦ç”»
 			height-=temp;
 			td+=temp*widths;
 			y=0;
 		}
-		if (y+height>ScreenHeight) height=ScreenHeight-y; //¼ôÈ¥³öµ×ÆÁ²¿·Ö
+		if (y+height>ScreenHeight) height=ScreenHeight-y; //å‰ªå»å‡ºåº•å±éƒ¨åˆ†
 		if (x_bak>=ScreenWidth) {
 			temp=0x10000-x_bak;
-			if (width<=temp) return; //È«ÔÚ»­ÃæÍâ£¬²»ĞèÒª»­
+			if (width<=temp) return; //å…¨åœ¨ç”»é¢å¤–ï¼Œä¸éœ€è¦ç”»
 			width-=temp;
 			td+=temp;
 			x_bak=0;
@@ -963,7 +963,7 @@ void vline()
 }
 
 void hline()
-//µ÷ÓÃÇ°±ØĞëµ÷ÕûY0,x0,x1Ê¹ÆäÂú×ã£º
+//è°ƒç”¨å‰å¿…é¡»è°ƒæ•´Y0,x0,x1ä½¿å…¶æ»¡è¶³ï¼š
 //Y0<ScreenHeight x0<ScreenWidth x1<ScreenWidth x0<=x1
 {
 	word width;
@@ -1044,13 +1044,13 @@ void block_check()
 int hline_check()
 {
 	word t;
-	if (Y0>=ScreenHeight) return 0; //ÏßÔÚÆÁÄ»Íâ
+	if (Y0>=ScreenHeight) return 0; //çº¿åœ¨å±å¹•å¤–
 	if (x0>x1) {
 		t=x0;
 		x0=x1;
 		x1=t;
 	}
-	if (x0>=ScreenWidth) return 0; //ÏßÔÚÆÁÄ»Íâ
+	if (x0>=ScreenWidth) return 0; //çº¿åœ¨å±å¹•å¤–
 	if (x1>=ScreenWidth) x1=ScreenWidth-1;
 	return 1;
 }
@@ -1109,7 +1109,7 @@ void cout(byte c)
 	}
 }
 
-void update_lcd_small() //Test Ã»ÓĞ¿¼ÂÇ·´ÏÔ
+void update_lcd_small() //Test æ²¡æœ‰è€ƒè™‘åæ˜¾
 {
 	byte c,c2;
 	unsigned long mask;
@@ -1147,7 +1147,7 @@ void update_lcd_small() //Test Ã»ÓĞ¿¼ÂÇ·´ÏÔ
 	}
 }
 
-void update_lcd_large() //Test Ã»ÓĞ¿¼ÂÇ·´ÏÔ
+void update_lcd_large() //Test æ²¡æœ‰è€ƒè™‘åæ˜¾
 {
 	byte c,c2;
 	unsigned long mask;
@@ -1239,7 +1239,7 @@ void printfloat()
 	for (i=0;;i++) {
 		if (num[i]=='e' && i) flag=1;
 		if (flag) flag++;
-		if (flag==4) continue; //×ª»»x.xxxxxe+0yyÎªx.xxxxxe+yy
+		if (flag==4) continue; //è½¬æ¢x.xxxxxe+0yyä¸ºx.xxxxxe+yy
 		if (num[i]) cout(num[i]);
 		else break;
 	}
@@ -1973,7 +1973,7 @@ void c_sprintf()
 				for (i=0;;i++) {
 					if (num[i]=='e' && i) flag=1;
 					if (flag) flag++;
-					if (flag==4) continue; //×ª»»x.xxxxxe+0yyÎªx.xxxxxe+yy
+					if (flag==4) continue; //è½¬æ¢x.xxxxxe+0yyä¸ºx.xxxxxe+yy
 					if (num[i]) lRam[str1++]=num[i];
 					else break;
 				}
@@ -2147,14 +2147,14 @@ void c_getblock()
 	if (graph_mode==1)
 		width=(word)a1>>3;
 	else if (graph_mode==4)
-		width=(word)(a1&0xfff8)>>1; //Ê¹¿í¶ÈÊÇ8µÄÕûÊı±¶
+		width=(word)(a1&0xfff8)>>1; //ä½¿å®½åº¦æ˜¯8çš„æ•´æ•°å€
 	else
 		width=(word)a1;
 	yy=(word)bp[1];
 	a1=bp[0];
 	if (graph_mode==8) xx=(word)a1;
-	else xx=(word)(a1&0xfff8); //Ê¹xxÊÇ8µÄÕûÊı±¶
-	if (width==0 || height==0) return; //Èİ´í
+	else xx=(word)(a1&0xfff8); //ä½¿xxæ˜¯8çš„æ•´æ•°å€
+	if (width==0 || height==0) return; //å®¹é”™
 	ByteAddr();
 	if (graph_mode==1) {
 		for (i=0;i<height;i++) {
@@ -2552,7 +2552,7 @@ void c_system()
 	a1=get_val();
 	switch (a1) {
 	case 0: //GetPID
-		a1=('L'<<24)+1; //LeeµÄ»úÆ÷
+		a1=('L'<<24)+1; //Leeçš„æœºå™¨
 		break;
 	case 1: //SetBrightness
 		get_val();

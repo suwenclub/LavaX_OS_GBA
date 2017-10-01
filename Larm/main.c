@@ -23,13 +23,13 @@ byte *cmd_line(int argc,char *argv[])
 
 	p=NULL;
 	if (argc<2) {
-		printf("´íÎó£ºÃ»ÓÐÖ¸¶¨ÊäÈëÎÄ¼þ\n");
+		printf("é”™è¯¯ï¼šæ²¡æœ‰æŒ‡å®šè¾“å…¥æ–‡ä»¶\n");
 		return NULL;
 	}
 	strcpy(SrcName,argv[1]);
 	fp=fopen(SrcName,"rb");
 	if (fp==NULL) {
-		printf("´íÎó£ºÎÞ·¨´ò¿ªÊäÈëÎÄ¼þ %s\n",SrcName);
+		printf("é”™è¯¯ï¼šæ— æ³•æ‰“å¼€è¾“å…¥æ–‡ä»¶ %s\n",SrcName);
 		return NULL;
 	}
 	name_len=strlen(SrcName);
@@ -45,7 +45,7 @@ byte *cmd_line(int argc,char *argv[])
 	}
 
 	for (i=2;i<argc;i++) {
-		if (argv[i][0]=='-') { //·Ç-¿ªÊ¼µÄ²ÎÊýºöÂÔ
+		if (argv[i][0]=='-') { //éž-å¼€å§‹çš„å‚æ•°å¿½ç•¥
 			switch (argv[i][1]) {
 			case 'o':
 				if (i+1<argc)
@@ -57,12 +57,12 @@ byte *cmd_line(int argc,char *argv[])
 
 	fread(fhead,1,16,fp);
 	if (fhead[0]!='L' || fhead[1]!='A' || fhead[2]!='V' || fhead[3]!=18) {
-		printf("´íÎó£º·ÇLavaX³ÌÐò\n");
+		printf("é”™è¯¯ï¼šéžLavaXç¨‹åº\n");
 		fclose(fp);
 		return NULL;
 	}
 	if ((fhead[8]&0x70)!=0x70 || fhead[9]*16!=240 || fhead[10]*16!=160) {
-		printf("´íÎó£º¸Ã³ÌÐò²»ÊÊºÏÔÚGBAÉÏÔËÐÐ£¨ÒªÇó£ºbigram£¬8Î»É«£¬240x160ÆÁÄ»·Ö±æÂÊ£©\n");
+		printf("é”™è¯¯ï¼šè¯¥ç¨‹åºä¸é€‚åˆåœ¨GBAä¸Šè¿è¡Œï¼ˆè¦æ±‚ï¼šbigramï¼Œ8ä½è‰²ï¼Œ240x160å±å¹•åˆ†è¾¨çŽ‡ï¼‰\n");
 		fclose(fp);
 		return NULL;
 	}
@@ -72,7 +72,7 @@ byte *cmd_line(int argc,char *argv[])
 	rewind(fp);
 	p=malloc(file_len+1024);
 	if (p==NULL) {
-		printf("´íÎó£ºÄÚ´æ²»×ã\n");
+		printf("é”™è¯¯ï¼šå†…å­˜ä¸è¶³\n");
 		fclose(fp);
 		return NULL;
 	}
@@ -82,7 +82,7 @@ byte *cmd_line(int argc,char *argv[])
 
 	out=fopen(ObjName,"w");
 	if (out==NULL) {
-		printf("´íÎó£ºÎÞ·¨´ò¿ªÊä³öÎÄ¼þ %s\n",ObjName);
+		printf("é”™è¯¯ï¼šæ— æ³•æ‰“å¼€è¾“å‡ºæ–‡ä»¶ %s\n",ObjName);
 		return NULL;
 	}
 
@@ -585,7 +585,7 @@ void push_sub0() //
 
 void cal_mul() //
 {
-	fprintf(out,"\n\tmul\tr%d,r%d,r%d",cur_reg+2,cur_reg+1,cur_reg+2); //´ý²é?Òª²»Òª¿¼ÂÇ·ûºÅ?
+	fprintf(out,"\n\tmul\tr%d,r%d,r%d",cur_reg+2,cur_reg+1,cur_reg+2); //å¾…æŸ¥?è¦ä¸è¦è€ƒè™‘ç¬¦å·?
 	cur_reg++;
 }
 
@@ -753,7 +753,7 @@ void cal_qmul() //
 	if (x==1) ;
 	else if (x) {
 		fprintf(out,"\n\tldr\tr0,=0x%x",x);
-		fprintf(out,"\n\tmul\tr%d,r0,r%d",cur_reg+1,cur_reg+1); //´ý²é?Òª²»Òª¿¼ÂÇ·ûºÅ?
+		fprintf(out,"\n\tmul\tr%d,r0,r%d",cur_reg+1,cur_reg+1); //å¾…æŸ¥?è¦ä¸è¦è€ƒè™‘ç¬¦å·?
 	} else fprintf(out,"\n\tmov\tr%d,#0",cur_reg+1);
 }
 
@@ -1091,7 +1091,7 @@ void cal_idx() //
 
 void pop_val() //
 {
-	fprintf(out,"\n\tmovs\tr%d,r%d",cur_reg+1,cur_reg+1); //½öÎª¸Ä±ä×´Ì¬
+	fprintf(out,"\n\tmovs\tr%d,r%d",cur_reg+1,cur_reg+1); //ä»…ä¸ºæ”¹å˜çŠ¶æ€
 	cur_reg=8;
 }
 
@@ -1369,7 +1369,7 @@ void c_void()
 
 void sn_err()
 {
-	printf("´íÎó£º²»Ö§³ÖµÄ×Ö½ÚÂë0x%x·¢ÉúÔÚÎÄ¼þÆ«ÒÆ0x%x´¦\n",p[-1],p-prog-1);
+	printf("é”™è¯¯ï¼šä¸æ”¯æŒçš„å­—èŠ‚ç 0x%xå‘ç”Ÿåœ¨æ–‡ä»¶åç§»0x%xå¤„\n",p[-1],p-prog-1);
 	fclose(out);
 	exit(0);
 }
@@ -1446,8 +1446,8 @@ void pre_code()
 
 int main(int argc,char *argv[])
 {
-	printf("LavaX±¾»ú±àÒëÆ÷(GBA) 3.5°æ\n");
-	printf("°æÈ¨ËùÓÐ (C) 2003-2015 LeeSoft\n");
+	printf("LavaXæœ¬æœºç¼–è¯‘å™¨(GBA) 3.5ç‰ˆ\n");
+	printf("ç‰ˆæƒæ‰€æœ‰ (C) 2003-2015 LeeSoft\n");
 	prog=cmd_line(argc,argv);
 	if (prog==NULL) return 1;
 
@@ -1462,6 +1462,6 @@ int main(int argc,char *argv[])
 
 	youhua_main(ObjName,ObjName);
 
-	printf("×ª»»³É¹¦\n");
+	printf("è½¬æ¢æˆåŠŸ\n");
 	return 0;
 }
